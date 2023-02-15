@@ -1,0 +1,102 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <iomanip>
+using namespace std;
+
+
+
+void readFile(ifstream& r2, string& boxes, float& num)
+{
+  r2 >> boxes >> num;
+  // function uses referernce parameters to read string value and float value from file
+}
+
+int main()
+{
+
+  float boxes[26]; //creates array to hold box amounts as floats 
+  float total = 3418416.01; //holds total amount of money in variable 
+  string box; //string variable to hold strings in file.txt 
+  float num; //float variable to hold numbers in file.txt 
+  ifstream r2; //variable to read from file 
+  r2.open("file.txt"); //opens file.txt
+  int i = 0; //O(1)
+  while(r2) //while loop to continue until done reading file.txt 
+  {
+    readFile(r2, box, num); //uses readFile to read file.txt 
+    boxes[i] = num; //sets index in boxes array to value that num holds 
+    //cout << boxes[i] << endl;
+    i++;  //adds 1 i variable to update boxes index in each loop 
+  }
+  
+  string name; //creates name variable
+  cout << "Enter your name?" << endl; 
+  cin >> name; //stores input from user in name variable 
+  cout << name << ", welcome to Deal or No Deal!" << endl; 
+
+  int keep;
+  int open;
+  cout << "Choose a box to keep  (Enter a number between 1 and 26)" << endl;
+  cin >> keep;//stores number user enters into keep variable
+
+  string remaining[26] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26"};
+  //creates an array to hold the "remaining" boxes
+  float sum_left = total; //variable sum_left set to total value 
+  bool keepGoing = true; //boolean variable created 
+  int cases = 26;
+  int inti;
+  while(keepGoing == true)//loop runs until keepGoing is false
+  {
+  for( i=0; i<5; i++) //for loop set to run 5 times 
+  {
+    cout << "Choose a box to open  (Enter a number between 1 and 26)" << endl;
+    cin >> open; //stores boxes chosen in open variable 
+    cout << "It has $" << boxes[open-1] << " inside." << endl; //prints out value in box chosen to user 
+    sum_left = sum_left - boxes[open-1]; //updates sum_left value by subtracting opened boxes' values 
+    boxes[open-1] = 0;
+    if(remaining[open-1] == to_string(open))
+    {
+      remaining[open-1] = 'X';//if statement sets values equal to user input to 'X' char 
+    }
+    //cout << "--" << sum_left << endl;
+  }
+   
+  cases = cases - 5; 
+  
+  float offer = 10000+(-2714.74 * cases)+ ( .040 * sum_left); //equation for money offer stored in float variable
+  cout << "Banker offer: " << offer << endl; //prints offer to user 
+  string deal; //string variable to hold user response 
+  cout << "deal or no deal (d/n)" << endl; 
+  cin >> deal; //takes user input 
+  if (deal == "n") 
+  {
+    cout << "Remaining boxes" << endl; 
+    for(i=0; i<26; i++) //for loop set to run 26 times(for 26 boxes) 
+    {
+      cout << remaining[i] << " "; //prints values in remaining array to user 
+    }
+    keepGoing == true; //if user inputs "n" while loop will continue
+  } 
+  if (deal == "d")
+  {
+    cout << "Let's see how you did!" << endl;
+    cout << "Potential winnings: $" << offer << endl; 
+    cout << "Winnings: $" << boxes[keep-1] << endl; //prints value in box user chose to keep 
+
+    string answer;
+    cout << "Would you like to see what is in the remaining boxes?(yes/no)" << endl;
+    cin >> answer;
+    if (answer == "yes")
+    {
+      cout << "Remaining Boxes" << endl;
+      for(i=0; i<26; i++)//for loop to run 26 times(number of boxes) 
+      {
+        cout << "Box " << i+1 << ": $" << fixed << setprecision(2) << boxes[i] << endl; //prints out values left in boxes to user 
+      }
+    }
+    keepGoing = false; //ends while loop 
+  }
+  }
+return 0;
+}
