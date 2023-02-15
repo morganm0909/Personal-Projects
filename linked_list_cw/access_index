@@ -1,0 +1,24 @@
+
+class ListNode:
+  def __init__(self, data, next=None):
+    self.data = data
+    self.next = next
+
+  def __str__(self):
+    temp = self
+    result = []
+    while temp != None:
+      result.append(str(temp.data))
+      temp = temp.next
+    result.append(str(None))
+    return "->".join(result)
+    
+def llIndex_Value(head, n):
+  if head == None: #if linked list is empty
+    return False
+  lst = []
+  temp = head
+  while (temp != None): 
+    lst.append(temp.data)
+    temp = temp.next
+  return lst[n]
