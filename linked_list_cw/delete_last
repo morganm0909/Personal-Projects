@@ -1,0 +1,30 @@
+class ListNode:
+  def __init__(self, data, next=None):
+    self.data = data
+    self.next = next
+
+  def __str__(self):
+    temp = self
+    result = []
+    while temp != None:
+      result.append(str(temp.data))
+      temp = temp.next
+    result.append(str(None))
+    return "->".join(result)
+
+
+def llDelete_Last_item(head):
+  if head == None: #if linked list is empty
+    return False
+  if head.next == None:  #if only 1 item in linked list
+    temp = head
+    head = None #removes item
+    return temp #returns value
+  last = None
+  temp = head
+  while temp.next != None:
+    last = temp
+    temp = temp.next
+  if last:
+    last.next = None
+  return temp.data
