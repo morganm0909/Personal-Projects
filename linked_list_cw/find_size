@@ -1,0 +1,13 @@
+class ListNode:
+  def __init__(self, data, next=None):
+    self.data = data
+    self.next = next
+
+  def __str__(self):
+    temp = self
+    result = []
+    while temp != None:
+      result.append(str(temp.data))
+      temp = temp.next
+    result.append(str(None))
+    return "->".join(result)
