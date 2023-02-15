@@ -11,3 +11,13 @@ class ListNode:
       temp = temp.next
     result.append(str(None))
     return "->".join(result)
+
+def llSize(head):
+  if head == None: #if linked list is empty
+    return False
+  length = 0
+  current = head
+  while current:  
+    current = current.next
+    length += 1
+  return length
