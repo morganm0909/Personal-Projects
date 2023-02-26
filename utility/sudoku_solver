@@ -1,5 +1,4 @@
-number_board =  
-[[7, 8, 0, 4, 0, 0, 1, 2, 0],
+number_board =  [[7, 8, 0, 4, 0, 0, 1, 2, 0],
 [6, 0, 0, 0, 7, 5, 0, 0, 9],
 [0, 0, 0, 6, 0, 1, 0, 7, 8],
 [0, 0, 7, 0, 4, 0, 2, 6, 0],
@@ -11,3 +10,16 @@ number_board =
 
 
 
+def pretty_print(board):
+    for x in range(len(board)):
+        if x % 3 == 0 and x != 0:
+            print("*************************")
+    for y in range(len(board[0])):
+        if y % 3 == 0:
+            print(" | ",end="")
+        if y == len(board) - 1:
+            print(board[x][y] , end="\n")
+        else:
+            print(string(board[x][y]) + " ", end="")
+
+print(pretty_print(number_board))
