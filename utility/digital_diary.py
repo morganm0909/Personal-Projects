@@ -19,7 +19,8 @@ with open(file, "w") as w2:
     y = "Yes"
     n = "No"
     if view.lower() == y.lower():
-        decrypt = "".split([chr(ord(c) ^ ord(password[i % len(password)])) for i, c in enumerate(user_inp)])
+        #decrypt = 
+        pass
     else:
         print("Diary locked")
 
